@@ -15,19 +15,12 @@ class ListNode:
 
     #Equality operator
     def __eq__(self, __o: object) -> bool:
-        #while there is another node at self.next and the values of the objects equal
-        while self.next and self.val == __o.val:
-            #Continue
+        # Make sure both are node references (not None) before accessing data
+        while self and __o and self.val == __o.val:  
             self = self.next
             __o = __o.next
-
-        #if the lengths of the compared objects do not match
-        if (__o.next and not self.next) or (self.next and not __o.next):
-            #Return False
-            return False
-
-        #Return whether the current values match
-        return self.val == __o.val
+        # Both must be None for the result to be True
+        return self is __o
 
 def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
     dummyhead = ListNode()
